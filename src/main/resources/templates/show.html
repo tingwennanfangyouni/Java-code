@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>展示页面</title>
+</head>
+<body>
+    <a th:href="@{/toadd}"><input type="button" value="添加"></a>
+    <form th:action="@{/selectAll}" method="post">
+        <input name="info">
+        <input type="submit" value="搜索">
+    </form>
+    <table border="1" cellspacing="1">
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>密码</th>
+            <th>性别</th>
+            <th>爱好</th>
+            <th>生日</th>
+            <th>操作</th>
+        </tr>
+        <tr th:each="u:${list}">
+            <td th:text="${u.id}">编号</td>
+            <td th:text="${u.name}">姓名</td>
+            <td th:text="${u.password}">密码</td>
+            <td th:text="${u.sex}">性别</td>
+            <td th:text="${u.hobbys}">爱好</td>
+            <td th:text="${u.birth}">生日</td>
+            <td>
+                <a th:href="@{/findid/}+${u.id}">修改</a>
+                <a th:href="@{/delete/}+${u.id}">删除</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
